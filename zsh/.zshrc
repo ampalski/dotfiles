@@ -61,7 +61,7 @@ if [[ "${terminfo[kcud1]}" != "" ]]; then
     bindkey "^[[B" down-line-or-beginning-search
 fi
 # Trying to get plotting in Julia to work
-export DISPLAY=localhost:0
+export DISPLAY=:1
 
 # ALIASES
 alias la="ls -al"
@@ -69,6 +69,7 @@ alias 2b="~/.local/scripts/secondbrain.sh"
 alias fd="fdfind"
 alias jo="julia --threads 12"
 alias zen="~/Applications/Zen/zen-specific.AppImage"
+alias obsidian="~/Applications/Obsidian/Obsidian-1.7.7.AppImage"
 
 # >>> juliaup initialize >>>
 
