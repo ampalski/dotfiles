@@ -640,7 +640,20 @@ require("lazy").setup({
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = { signs = false },
 	},
-
+	-- {
+	-- 	"rrethy/vim-hexokinase",
+	-- 	build = "make hexokinase",
+	-- },
+	-- {
+	-- 	"norcalli/nvim-colorizer.lua",
+	-- require("colorizer").setup({
+	-- 	"css",
+	-- 	"javascript",
+	-- 	html = {
+	-- 		mode = "foreground",
+	-- 	},
+	-- }),
+	-- },
 	{ -- Collection of various small independent plugins/modules
 		"echasnovski/mini.nvim",
 		config = function()

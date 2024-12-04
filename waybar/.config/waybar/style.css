@@ -65,6 +65,14 @@ window#waybar {
   padding: 3px 10px;
 }
 
+#custom-logo {
+  background-image: url('/usr/share/pixmaps/distribution-logos/square-hicolor.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  /* background-size: contain; */
+  background-size: auto 30px;
+}
+
 #clock {
   color: #b48ead;
   border-radius: 0px 5px 5px 0px;
@@ -98,8 +106,8 @@ window#waybar {
   background-color: #24283b;
   margin: 5px 0;
   padding: 0 10px;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
+  /* border-top-left-radius: 5px; */
+  /* border-bottom-left-radius: 5px; */
   color: #82e4ff;
 }
 
@@ -118,9 +126,9 @@ window#waybar {
   background: #2a3152;
   margin: 5px 0;
   padding: 0 10px;
-  margin-left: 3px;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
+  /* margin-left: 3px; */
+  /* border-top-left-radius: 5px; */
+  /* border-bottom-left-radius: 5px; */
   color: #ff9e64;
 }
 
@@ -129,9 +137,9 @@ window#waybar {
   padding: 0 10px;
   background-color: #2a3152;
   color: #ff7a93;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  margin-right: 6px;
+  /* border-top-right-radius: 5px; */
+  /* border-bottom-right-radius: 5px; */
+  /* margin-right: 6px; */
 }
 
 #tray {
