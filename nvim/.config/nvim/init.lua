@@ -797,7 +797,7 @@ require("lazy").setup({
 			workspaces = {
 				{
 					name = "SecondBrain",
-					path = "/mnt/c/Users/ampal/Documents/SecondBrain/AP/",
+					path = "~/SecondBrain/",
 				},
 			},
 			completion = {

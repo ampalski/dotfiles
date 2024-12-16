@@ -14,6 +14,7 @@
         "hyprland/window"
     ],
     "modules-right": [
+        "custom/updates",
         "pulseaudio",
         "network",
         "cpu",
@@ -45,6 +46,15 @@
             "locked": "",
             "unlocked": ""
         }
+    },
+    "custom/updates": {
+        "format": "  {}",
+        "escape": true,
+        "return-type": "json",
+        "exec": "~/dotfiles/scripts/updates.sh",
+        "interval": 1800,
+        //"on-click": "$(cat ~/.config/ml4w/settings/terminal.sh) --class dotfiles-floating -e ~/.config/ml4w/scripts/installupdates.sh",
+        //"on-click-right": "~/.config/ml4w/settings/software.sh"
     },
     "custom/logo": {
         "format": "     ",
@@ -111,7 +121,7 @@
     },
     "temperature": {
         // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "hwmon-path": "/sys/devices/platform/PNP0C14:00/wmi_bus/wmi_bus-PNP0C14:00/DEADBEEF-2001-0000-00A0-C90629100000/hwmon/hwmon5/temp3_input",
         "critical-threshold": 80,
         // "format-critical": "{temperatureC}°C {icon}",
         "format": "{temperatureC}°C {icon}",
@@ -197,10 +207,9 @@
 		"menu": "on-click",
 		"menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
 		"menu-actions": {
-			"shutdown": "shutdown",
-			"reboot": "reboot",
-			"suspend": "systemctl suspend",
-			"hibernate": "systemctl hibernate"
+			"shutdown": "systemctl poweroff",
+			"reboot": "systemctl reboot",
+			"lock": "hyprlock"
 		}
     }
 }

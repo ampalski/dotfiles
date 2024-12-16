@@ -41,6 +41,7 @@ window#waybar {
 }
 
 #custom-date,
+#custom-updates,
 #clock,
 #battery,
 #pulseaudio,
@@ -73,10 +74,11 @@ window#waybar {
   background-size: auto 30px;
 }
 
+#custom-updates,
 #clock {
   color: #b48ead;
-  border-radius: 0px 5px 5px 0px;
-  margin-right: 6px;
+  /* border-radius: 0px 5px 5px 0px; */
+  /* margin-right: 6px; */
 }
 
 #battery {
@@ -95,7 +97,7 @@ window#waybar {
 
 #network {
   color: #f7768e;
-  border-radius: 5px 0px 0px 5px;
+  /* border-radius: 5px 0px 0px 5px; */
 }
 
 #pulseaudio {
