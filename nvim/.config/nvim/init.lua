@@ -709,9 +709,9 @@ require("lazy").setup({
 			},
 			-- Autoinstall languages that are not installed
 			auto_install = true,
-			-- endwise = {
-			-- 	enable = true,
-			-- },
+			endwise = {
+				enable = true,
+			},
 			highlight = {
 				enable = true,
 				-- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.

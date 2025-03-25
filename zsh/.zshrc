@@ -66,9 +66,9 @@ export DISPLAY=:1
 # ALIASES
 alias la="ls -al"
 alias 2b="~/.local/scripts/secondbrain.sh"
-alias fd="fdfind"
+alias fd="fd"
 alias jo="julia --threads 12"
-alias zen="~/Applications/Zen/zen-specific.AppImage"
+# alias zen="~/Applications/Zen/zen-specific.AppImage"
 alias obsidian="~/Applications/Obsidian/Obsidian-1.7.7.AppImage"
 alias tm="~/dotfiles/scripts/ssh_agent_tmux.sh"
 alias tms="~/dotfiles/scripts/tmux-sessionizer"
