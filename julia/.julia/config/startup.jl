@@ -1,4 +1,4 @@
-ENV["JULIA_PKG_USE_CLI_GIT"]=true
+ENV["JULIA_PKG_USE_CLI_GIT"] = true
 
 import Pkg
 let
@@ -13,7 +13,10 @@ end
 using Revise
 using OhMyREPL
 @async begin
-    while !isdefined(Base, :active_repl) sleep(0.1) end
+    while !isdefined(Base, :active_repl)
+        sleep(0.1)
+    end
     OhMyREPL.Prompt.insert_keybindings()
 end
-OhMyREPL.input_prompt!("λ ", :green)    	
+OhMyREPL.input_prompt!("λ ", :green)
+OhMyREPL.enable_autocomplete_brackets(false)
