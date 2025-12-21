@@ -45,7 +45,7 @@ rtp:prepend(lazypath)
 require("lazy").setup({
 	-- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
-	-- "kdheepak/JuliaFormatter.vim",
+	"kdheepak/JuliaFormatter.vim",
 	"JuliaEditorSupport/julia-vim",
 	"NMAC427/guess-indent.nvim", -- Detect tabstop and shiftwidth automatically
 	--	"neoclide/coc",
@@ -506,7 +506,7 @@ require("lazy").setup({
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
 				"stylua", -- Used to format Lua code
-				-- "julia-lsp",
+				"julia-lsp",
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
@@ -972,7 +972,7 @@ require("lazy").setup({
 				},
 			},
 			completion = {
-				-- nvim_cmp = true, -- removed after killing cmp ... may want to replace
+				nvim_cmp = true,
 				min_chars = 2,
 			},
 			templates = {
@@ -1070,59 +1070,45 @@ require("lazy").setup({
 })
 --local capabilities = require("cmp_nvim_lsp").default_capabilities()
 -- require("lspconfig").julials.setup({})
--- vim.lsp.enable("julials") -- uncomment if jetls isn't working out
-vim.lsp.config("jetls", {
-	-- dependencies = {
-	-- 	"saghen/blink.cmp",
-	-- },
+vim.lsp.config("julials", {
 	cmd = {
-		"jetls",
-		"--threads=auto",
-		"--",
+		"julia",
+		"--project=" .. "~/.julia/environments/lsp/",
+		"--startup-file=no",
+		"--history-file=no",
+		"-e",
+		[[
+            using Pkg
+            Pkg.instantiate()
+            using LanguageServer
+        depot_path = get(ENV, "JULIA_DEPOT_PATH", "")
+        project_path = let
+            dirname(something(
+                ## 1. Finds an explicitly set project (JULIA_PROJECT)
+                Base.load_path_expand((
+                    p = get(ENV, "JULIA_PROJECT", nothing);
+                        p === nothing ? nothing : isempty(p) ? nothing : p
+                    )),
+                        ## 2. Look for a Project.toml file in the current working directory,
+                        ##    or parent directories, with $HOME as an upper boundary
+                        Base.current_project(),
+                        ## 3. First entry in the load path
+                        get(Base.load_path(), 1, nothing),
+                        ## 4. Fallback to default global environment,
+                        ##    this is more or less unreachable
+                    Base.load_path_expand("@v#.#"),
+                ))
+            end
+                    @info "Running language server" VERSION pwd() project_path depot_path
+                    server = LanguageServer.LanguageServerInstance(stdin, stdout, project_path, depot_path)
+        server.runlinter = true
+            run(server)
+        ]],
 	},
 	filetypes = { "julia" },
+	root_markers = { "Project.toml", "JuliaProject.toml" },
+	settings = {},
 })
-vim.lsp.enable("jetls")
--- Removed the below section 12/19/25 in favor of the more simple vim.lsp.enable call above
--- vim.lsp.config("julials", {
--- 	cmd = {
--- 		"julia",
--- 		"--project=" .. "~/.julia/environments/lsp/",
--- 		"--startup-file=no",
--- 		"--history-file=no",
--- 		"-e",
--- 		[[
---             using Pkg
---             Pkg.instantiate()
---             using LanguageServer
---         depot_path = get(ENV, "JULIA_DEPOT_PATH", "")
---         project_path = let
---             dirname(something(
---                 ## 1. Finds an explicitly set project (JULIA_PROJECT)
---                 Base.load_path_expand((
---                     p = get(ENV, "JULIA_PROJECT", nothing);
---                         p === nothing ? nothing : isempty(p) ? nothing : p
---                     )),
---                         ## 2. Look for a Project.toml file in the current working directory,
---                         ##    or parent directories, with $HOME as an upper boundary
---                         Base.current_project(),
---                         ## 3. First entry in the load path
---                         get(Base.load_path(), 1, nothing),
---                         ## 4. Fallback to default global environment,
---                         ##    this is more or less unreachable
---                     Base.load_path_expand("@v#.#"),
---                 ))
---             end
---                     @info "Running language server" VERSION pwd() project_path depot_path
---                     server = LanguageServer.LanguageServerInstance(stdin, stdout, project_path, depot_path)
---         server.runlinter = true
---             run(server)
---         ]],
--- 	},
--- 	filetypes = { "julia" },
--- 	root_markers = { "Project.toml", "JuliaProject.toml" },
--- 	settings = {},
--- })
 
 -- require("lspconfig").julials.setup({
 -- 	capabilities = capabilities,
