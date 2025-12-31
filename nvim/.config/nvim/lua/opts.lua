@@ -81,3 +81,5 @@ vim.g.slime_default_config = {
 }
 
 vim.opt.conceallevel = 1
+
+vim.opt.winborder = "rounded"

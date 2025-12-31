@@ -14,7 +14,7 @@
         "hyprland/window"
     ],
     "modules-right": [
-        "custom/updates",
+        "custom/notification",
         "pulseaudio",
         "network",
         "cpu",
@@ -46,14 +46,25 @@
             "unlocked": ""
         }
     },
-    "custom/updates": {
-        "format": "  {}",
-        "escape": true,
+    "custom/notification": {
+        "tooltip": true,
+        "format": "{0} {icon}",
+        "format-icons": {
+          "notification": "󱅫",
+          "none": "󰂜",
+          "dnd-notification": "󰂠",
+          "dnd-none": "󰪓",
+          "inhibited-notification": "󰂛",
+          "inhibited-none": "󰪑",
+          "dnd-inhibited-notification": "󰂛",
+          "dnd-inhibited-none": "󰪑"
+        },
         "return-type": "json",
-        "exec": "~/dotfiles/scripts/updates.sh",
-        "interval": 1800,
-        //"on-click": "$(cat ~/.config/ml4w/settings/terminal.sh) --class dotfiles-floating -e ~/.config/ml4w/scripts/installupdates.sh",
-        //"on-click-right": "~/.config/ml4w/settings/software.sh"
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
     },
     "custom/logo": {
         "format": "     ",
