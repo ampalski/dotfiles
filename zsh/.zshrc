@@ -49,17 +49,36 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
  # start typing + [Up-Arrow] - fuzzy find history forward
-if [[ "${terminfo[kcuu1]}" != "" ]]; then
-    autoload -U up-line-or-beginning-search
-    zle -N up-line-or-beginning-search
-    bindkey "^[[A" up-line-or-beginning-search
+# if [[ "${terminfo[kcuu1]}" != "" ]]; then
+#     autoload -U up-line-or-beginning-search
+#     zle -N up-line-or-beginning-search
+#     bindkey "^[[A" up-line-or-beginning-search
+# fi
+# # start typing + [Down-Arrow] - fuzzy find history backward
+# if [[ "${terminfo[kcud1]}" != "" ]]; then
+#     autoload -U down-line-or-beginning-search
+#     zle -N down-line-or-beginning-search
+#     bindkey "^[[B" down-line-or-beginning-search
+# fi
+# Load the search functions
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+# Bind Up Arrow
+if [[ -n "${terminfo[kcuu1]}" ]]; then
+    bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
 fi
-# start typing + [Down-Arrow] - fuzzy find history backward
-if [[ "${terminfo[kcud1]}" != "" ]]; then
-    autoload -U down-line-or-beginning-search
-    zle -N down-line-or-beginning-search
-    bindkey "^[[B" down-line-or-beginning-search
+# Fallback for Up Arrow if terminfo fails
+bindkey '^[[A' up-line-or-beginning-search
+
+# Bind Down Arrow
+if [[ -n "${terminfo[kcud1]}" ]]; then
+    bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
 fi
+# Fallback for Down Arrow if terminfo fails
+bindkey '^[[B' down-line-or-beginning-search
 # Trying to get plotting in Julia to work
 export DISPLAY=:1
 
@@ -72,6 +91,8 @@ alias jo="julia --threads 12"
 alias obsidian="~/Applications/Obsidian/Obsidian-1.7.7.AppImage"
 alias tm="~/dotfiles/scripts/ssh_agent_tmux.sh"
 alias tms="~/dotfiles/scripts/tmux-sessionizer"
+alias rebuild="sudo nixos-rebuild switch"
+alias upgrade="sudo nixos-rebuild switch --upgrade"
 
 path=('/home/andrew/.julia/bin' $path)
 export PATH
