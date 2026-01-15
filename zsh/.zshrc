@@ -91,7 +91,7 @@ alias jo="julia --threads 12"
 alias obsidian="~/Applications/Obsidian/Obsidian-1.7.7.AppImage"
 alias tm="~/dotfiles/scripts/ssh_agent_tmux.sh"
 alias tms="~/dotfiles/scripts/tmux-sessionizer"
-alias rebuild="sudo nixos-rebuild switch"
+alias rebuild="sudo nixos-rebuild switch --flake ~/dotfiles/nixos"
 alias upgrade="sudo nixos-rebuild switch --upgrade"
 
 path=('/home/andrew/.julia/bin' $path)

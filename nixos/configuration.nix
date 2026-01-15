@@ -87,22 +87,13 @@
     shell = pkgs.zsh;
     packages = with pkgs; [
     #  thunderbird
-      wget
-      curl
       neovim
       obsidian
       rofi
-      gnumake
-      unzip
-      gcc
-      ripgrep
-      fd
       ghostty
-      stow
       zsh-powerlevel10k
       zoxide
       tmux
-      fzf
       swaynotificationcenter
       alacritty
       julia-bin
@@ -126,14 +117,14 @@
         };
   };
 
-  programs.git = {
-    enable = true;
-    config = {
-      user.name = "Andrew Palski";
-      user.email = "ampalski@gmail.com";
-      init.defaultbranch= "main";
-    };
-  };
+  # programs.git = {
+  #   enable = true;
+  #   config = {
+  #     user.name = "Andrew Palski";
+  #     user.email = "ampalski@gmail.com";
+  #     init.defaultbranch= "main";
+  #   };
+  # };
 
   fonts.packages = with pkgs; [
     nerd-fonts.space-mono
