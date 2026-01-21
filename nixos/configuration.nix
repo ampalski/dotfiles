@@ -2,12 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      /etc/nixos/hardware-configuration.nix
     ];
 
   # Bootloader.
@@ -43,12 +43,12 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
 
   # Enable the Cinnamon Desktop Environment.
   # services.xserver.displayManager.lightdm.enable = true;
   # services.xserver.desktopManager.cinnamon.enable = true;
-  services.displayManager.gdm.enable=true;
+  services.xserver.displayManager.sddm.enable=true;
 
   # Configure keymap in X11
   # services.xserver.xkb = {
@@ -97,34 +97,29 @@
       swaynotificationcenter
       alacritty
       julia-bin
+      tree
     ];
   };
 
-  # Install firefox.
   programs = {
- 	firefox.enable = true;
-	zsh.enable=true;
-        niri.enable=true;
-        dms-shell = {
-          enable=true;
-          systemd={
-            enable = true;
-            restartIfChanged = true;
-          };
-          enableSystemMonitoring = true;
-          enableClipboard = true;
-          enableDynamicTheming = true;
-        };
+    firefox.enable = true;
+    zsh.enable=true;
+    # niri.enable=true;
+    # hyprland = {
+    #   enable = true;
+    #   xwayland.enable=true;
+    # };
+    # dms-shell = {
+    #   enable=true;
+    #   systemd={
+    #     enable = true;
+    #     restartIfChanged = true;
+    #   };
+    #   enableSystemMonitoring = true;
+    #   enableClipboard = true;
+    #   enableDynamicTheming = true;
+    # };
   };
-
-  # programs.git = {
-  #   enable = true;
-  #   config = {
-  #     user.name = "Andrew Palski";
-  #     user.email = "ampalski@gmail.com";
-  #     init.defaultbranch= "main";
-  #   };
-  # };
 
   fonts.packages = with pkgs; [
     nerd-fonts.space-mono
@@ -132,6 +127,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  nixpkgs-unstable.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
