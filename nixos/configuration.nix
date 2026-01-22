@@ -48,7 +48,10 @@
   # Enable the Cinnamon Desktop Environment.
   # services.xserver.displayManager.lightdm.enable = true;
   # services.xserver.desktopManager.cinnamon.enable = true;
-  services.xserver.displayManager.sddm.enable=true;
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+  };
 
   # Configure keymap in X11
   # services.xserver.xkb = {
@@ -89,7 +92,6 @@
     #  thunderbird
       neovim
       obsidian
-      rofi
       ghostty
       zsh-powerlevel10k
       zoxide
@@ -105,10 +107,30 @@
     firefox.enable = true;
     zsh.enable=true;
     # niri.enable=true;
-    # hyprland = {
-    #   enable = true;
-    #   xwayland.enable=true;
-    # };
+    hyprland = {
+      enable = true;
+      xwayland.enable=true;
+    };
+    tmux = {
+      enable = true;
+      baseIndex = 1;
+
+      plugins = with pkgs; [
+        tmuxPlugins.tokyo-night-tmux
+      ];
+      # plugins = with pkgs; [
+      #   {
+      #     plugin = tmuxPlugins.tokyo-night-tmux;
+      #     extraConfig = ''
+      #       set -g @tokyo-night-tmux_show_datetime 0
+      #       set -g @tokyo-night-tmux_window_id_style fsquare
+      #       set -g @tokyo-night-tmux_pane_id_style hsquare
+      #       set -g @tokyo-night-tmux_zoom_id_style dsquare
+      #     '';
+      #   }
+      # ];
+      extraConfig = builtins.readFile ../tmux/.tmux.conf;
+    };
     # dms-shell = {
     #   enable=true;
     #   systemd={
@@ -127,7 +149,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  nixpkgs-unstable.config.allowUnfree = true;
+  # nixpkgs-unstable.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -136,6 +158,7 @@
   #  wget
       # nerd-fonts.space-mono
   ];
+  environment.pathsToLink = [ "/share/applications" "/share/xdg-desktop-portal" ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

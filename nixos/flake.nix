@@ -8,7 +8,7 @@
     hyprland.url = "github:hyprwm/Hyprland";
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
-      input.hyprland.follows = "hyprland";
+      inputs.hyprland.follows = "hyprland";
     };
 
     home-manager = {
@@ -28,7 +28,8 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.andrew = import ./home.nix;
-        };
+          home-manager.extraSpecialArgs = { inherit inputs; };
+        }
       ];
     };
   };

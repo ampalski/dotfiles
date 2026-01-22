@@ -13,7 +13,7 @@ window#waybar {
 }
 
 #custom-logo {
-  background-image: url('/usr/share/pixmaps/distribution-logos/square-hicolor.svg');
+  background-image: url('./NixOS.svg');
   background-position: center;
   background-repeat: no-repeat;
   /* background-size: contain; */

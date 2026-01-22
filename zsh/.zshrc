@@ -88,10 +88,10 @@ alias 2b="~/.local/scripts/secondbrain.sh"
 alias fd="fd"
 alias jo="julia --threads 12"
 # alias zen="~/Applications/Zen/zen-specific.AppImage"
-alias obsidian="~/Applications/Obsidian/Obsidian-1.7.7.AppImage"
+# alias obsidian="~/Applications/Obsidian/Obsidian-1.7.7.AppImage"
 alias tm="~/dotfiles/scripts/ssh_agent_tmux.sh"
 alias tms="~/dotfiles/scripts/tmux-sessionizer"
-alias rebuild="sudo nix flake update; sudo nixos-rebuild switch --flake ~/dotfiles/nixos"
+alias rebuild="sudo nix flake update; sudo nixos-rebuild switch --impure --flake ~/dotfiles/nixos"
 alias upgrade="sudo nixos-rebuild switch --upgrade"
 
 path=('/home/andrew/.julia/bin' $path)

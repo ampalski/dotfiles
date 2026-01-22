@@ -1,3 +1,4 @@
 theme=tokyonight
 font-family="SpaceMono Nerd Font"
 window-decoration=false
+background-opacity=0.9
