@@ -13,7 +13,7 @@ window#waybar {
 }
 
 #custom-logo {
-  background-image: url('./NixOS.svg');
+  background-image: url('/usr/share/pixmaps/distribution-logos/square-hicolor.svg');
   background-position: center;
   background-repeat: no-repeat;
   /* background-size: contain; */
@@ -60,6 +60,7 @@ window#waybar {
 #memory,
 #temperature,
 #clock,
+#mpris,
 #custom-power {
   padding: 0px 10px;
   margin: 5px 0px;
@@ -67,14 +68,28 @@ window#waybar {
   color: #1a2b26;
 }
 
+/*
 #custom-power {
   background-color: #db4b4b;
 }
 
-
 #custom-notification {
   background-color: #bb9af7;
 }
+*/
+
+#custom-power {
+  background-color: #bb9af7;
+}
+
+#mpris {
+  background-color: #bb9af7;
+}
+
+#custom-notification {
+  background-color: #db4b4b;
+}
+
 #clock {
   background-color: #a9b1d6;
 }

@@ -14,14 +14,15 @@
         "hyprland/window"
     ],
     "modules-right": [
-        "custom/notification",
+        //"custom/power",
+        "mpris",
         "pulseaudio",
         "network",
         "cpu",
         "memory",
         "temperature",
         "clock",
-        "custom/power"
+        "custom/notification"
     ],
     // Modules configuration
     "hyprland/workspaces": {
@@ -48,7 +49,7 @@
     },
     "custom/notification": {
         "tooltip": true,
-        "format": "{0} {icon}",
+        "format": "{0} {icon} ⏻",
         "format-icons": {
           "notification": "󱅫",
           "none": "󰂜",
@@ -69,6 +70,18 @@
     "custom/logo": {
         "format": "     ",
         "tooltip": "false",
+        "on-click": "rofi -show drun -theme $HOME/.config/rofi/launcher.rasi",
+    },
+    "mpris": {
+        "format": "{player_icon} {artist} - {title}",
+        "format-paused": "{status_icon} <i>{artist} - {title}</i>",
+        "player-icons": {
+            "default": "▶",
+            "mpv": "🎵"
+        },
+        "status-icons": {
+            "paused": "⏸"
+        },
     },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
@@ -208,7 +221,7 @@
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     },
     "custom/power": {
-        "format" : "⏻ ",
+        "format" : "⏻",
 		"tooltip": false,
 		"menu": "on-click",
 		"menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
