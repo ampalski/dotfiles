@@ -1077,10 +1077,10 @@ vim.lsp.config("jetls", {
 	-- },
 	cmd = {
 		"jetls",
-		"--threads=auto",
-		"--",
+		"serve",
 	},
 	filetypes = { "julia" },
+	root_markers = { "Project.toml" },
 })
 vim.lsp.enable("jetls")
 -- Removed the below section 12/19/25 in favor of the more simple vim.lsp.enable call above
