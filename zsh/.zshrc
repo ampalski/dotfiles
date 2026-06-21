@@ -86,7 +86,8 @@ export DISPLAY=:1
 alias la="ls -al"
 alias 2b="~/.local/scripts/secondbrain.sh"
 alias fd="fd"
-alias jo="julia --threads 12"
+alias julia="julialauncher"
+alias jo="julialauncher --threads 12"
 alias zen="~/Applications/Zen/zen-specific.AppImage"
 alias obsidian="~/Applications/Obsidian/Obsidian-1.7.7.AppImage"
 alias tm="~/dotfiles/scripts/ssh_agent_tmux.sh"
@@ -103,6 +104,8 @@ export PATH
 
 path=('/home/andrew/.juliaup/bin' $path)
 export PATH
+# Tab completion for juliaup and julia channel selection
+[ -f "/home/andrew/.julia/juliaup/completions/zsh.zsh" ] && source "/home/andrew/.julia/juliaup/completions/zsh.zsh"
 
 # <<< juliaup initialize <<<
 
